@@ -1,0 +1,85 @@
+TO DOs ===================================================================================
+
+	write motor control function for valve
+	write scheduling module to schedule irrigation, logging sensor data, and log file backups
+	wire the index.html file to realtime sensor data instead of just logs
+	update sensor logging
+		- allow only one entry per hour
+		- log barometer as a rolling average combining current reading with last 3 log entries 
+		- add a field to record if barometer direction - steady, rising or falling
+
+	add DDNS and setup DMZ in router for public http access
+
+	create a sleep manager to save power- only wake for scheduled events, comm check and interrupts
+
+DONE	write data aggregation routine for creating daydata.csv file for terend chart
+
+
+************************   SERVICE OPTIMIZATIONS   ***************************************
+
+
+	create a general event log to capture device activity besides sensor readings
+		
+	write an admin page
+
+	write a backup routine for sensor logs
+	
+	move all inline styles to css/custom.css and minify
+    
+    	experiment moving majority of inline script to js/main.js  
+    
+    	test serving the masthead graphic from the html file as base-64 inline code 
+
+DONE	host masthead graphic on nuljon.com insted of SPIFFS
+
+DONE	use CDN to host Framework libraries instead of SPIFFS (JQUERY, Tether, and Bootstrap)
+
+DONE	use nuljon.com as a psuedo CDN to host JQwidget directory and JS directory
+    
+DONE	minfy and gzip index.html on SPIFFS
+
+DONE	gzip favicon.ico on SPIFFS
+	
+PART	minify all text based files hosted on nuljon.com (.js, .css)
+
+	Create a RESTful service on nuljon.com to act as data repository for MGidIoT to post logs
+
+	create a scheduled back-up of logs once data respository exists
+
+    
+**************************   SECURITY OPTIMIZATIONS    ***********************************
+
+      	create an admin page with the following attributes
+		    
+                accessible only via authenticated websocket on local network
+    
+                allows modify sensors - soil moisture threshold, barometer rolling average range
+
+		allows modify irrigation schedule 
+    
+                allows modify logging interval
+    
+                real-time control of water valve (override schedule)
+
+                update firmware - requires acess to device (interlock switch)
+
+		allows modify FS - uploads and deletes to SPIFFS log files, html files, images, etc.
+	
+	disable unecessary webserver request handlers in the codebase
+
+	disbable unecessary WIFI functions, such as AP mode
+
+	disable arduino OTA upon coverage by admin page
+
+	impliment a hashing system to secure Admin communications that includes:
+
+		- set up a server on local network to generate all admin client communications
+
+		- authenticate messages via a secret known only to MGidIoT and local server
+
+		- secret is used to seed the hash - never transmit secret over the network
+		
+		- allow local wifi or LAN to access admin functions via HTML form hosted on server
+
+		- provide remote access to admin functions via VPN
+    
