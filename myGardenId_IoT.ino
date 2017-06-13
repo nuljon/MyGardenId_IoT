@@ -31,11 +31,11 @@ static const char ntpServerName[] = "us.pool.ntp.org";
 //assign timezone as offset from GMT
 const int timeZone = -7;  // Pacific Daylight Time (USA)
 // configure local wifi network and admin authentication
-const char* ssid = "modem";
-const char* password = "5034751581";
+const char* ssid = "your modem or router";
+const char* password = "xxxxxxxxx";
 const char * hostName = "esp-async";
-const char* http_username = "jon";
-const char* http_password = "l1ttlegirl";
+const char* http_username = "xxxx";
+const char* http_password = "xxxxxxxxx";
 // assign UDP local port number
 const int localPort = 8888;
 // declare a time_t to track last sensor read
